@@ -5,24 +5,25 @@
 Summary:	Basic request handling the OPeNDAP data server
 Summary(pl.UTF-8):	Obsługa podstawowych zapytań dla serwera danych OPeNDAP
 Name:		opendap-xml_data_handler
-Version:	1.0.3
+Version:	1.0.4
 Release:	1
 License:	LGPL v2.1+
 Group:		Daemons
 Source0:	http://www.opendap.org/pub/source/xml_data_handler-%{version}.tar.gz
-# Source0-md5:	7dbe4a9c2a8644b06c11110f5620b82a
+# Source0-md5:	9762a8b761c6c21d3ebbacd23e37e9b1
+Patch0:		%{name}-libdap.patch
 URL:		http://opendap.org/
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.10
-%{?with_tests:BuildRequires:	bes >= 3.9.0}
-BuildRequires:	bes-devel >= 3.9.0
+%{?with_tests:BuildRequires:	bes >= 3.13.0}
+BuildRequires:	bes-devel >= 3.13.0
 %{?with_tests:BuildRequires:	cppunit-devel >= 1.12.0}
-BuildRequires:	libdap-devel >= 3.11.0
+BuildRequires:	libdap-devel >= 3.13.0
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:2
 BuildRequires:	pkgconfig
-Requires:	bes >= 3.9.0
-Requires:	libdap >= 3.11.0
+Requires:	bes >= 3.13.0
+Requires:	libdap >= 3.13.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -42,6 +43,7 @@ wymagających danych w dokumentach XML.
 
 %prep
 %setup -q -n xml_data_handler-%{version}
+%patch0 -p1
 
 %build
 # rebuild autotools for -as-needed to work
