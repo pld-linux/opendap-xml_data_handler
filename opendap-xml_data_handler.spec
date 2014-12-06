@@ -5,13 +5,12 @@
 Summary:	Basic request handling the OPeNDAP data server
 Summary(pl.UTF-8):	Obsługa podstawowych zapytań dla serwera danych OPeNDAP
 Name:		opendap-xml_data_handler
-Version:	1.0.4
+Version:	1.0.5
 Release:	1
 License:	LGPL v2.1+
 Group:		Daemons
 Source0:	http://www.opendap.org/pub/source/xml_data_handler-%{version}.tar.gz
-# Source0-md5:	9762a8b761c6c21d3ebbacd23e37e9b1
-Patch0:		%{name}-libdap.patch
+# Source0-md5:	155dad437b69dcf2370d7908fe4a1a8a
 URL:		http://opendap.org/
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.10
@@ -43,7 +42,6 @@ wymagających danych w dokumentach XML.
 
 %prep
 %setup -q -n xml_data_handler-%{version}
-%patch0 -p1
 
 %build
 # rebuild autotools for -as-needed to work
@@ -52,7 +50,8 @@ wymagających danych w dokumentach XML.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure
+%configure \
+	--disable-static
 %{__make}
 
 %{?with_tests:%{__make} check}
