@@ -1,3 +1,4 @@
+# NOTE: for versions >= 1.0.9 see bes.spec
 #
 # Conditional build:
 %bcond_with	tests	# make check (requires BES server)
@@ -16,6 +17,7 @@ BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.10
 %{?with_tests:BuildRequires:	bes >= 3.13.0}
 BuildRequires:	bes-devel >= 3.13.0
+BuildRequires:	bes-devel < 3.14
 %{?with_tests:BuildRequires:	cppunit-devel >= 1.12.0}
 BuildRequires:	libdap-devel >= 3.13.0
 BuildRequires:	libstdc++-devel
